@@ -1,0 +1,211 @@
+@font-face {
+    font-family: 'Comfortaa';
+    src: url(${new URL('./fonts/comfortaa/comfortaa.woff', import.meta.url)}) format('woff');
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Comfortaa, sans-serif;
+    -webkit-user-drag: none;
+    background: var(--wallpaper);
+    color: var(--color-text);
+
+    overflow: hidden;
+    touch-action: none;
+
+    font-size: 30px;
+
+    -webkit-tap-highlight-color: transparent;
+    scrollbar-color: var(--color-scroll-bar) var(--color-background-scroll-bar);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: initial;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-scroll-bar);
+}
+
+.margin_bottom_scrollbar::-webkit-scrollbar-track {
+    margin-bottom: 30px;
+    background-color: var(--color-background-scroll-bar);
+}
+
+input {
+    border-radius: 5px;
+    border: solid 1px var(--color-line);
+
+    padding: '5px';
+
+    background: none;
+    outline: none;
+
+    font: inherit;
+    color: inherit;
+}
+
+img {
+    -webkit-user-drag: none;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0 5px;
+    border-radius: 5px;
+    border: solid 1px var(--color-line);
+}
+
+textarea {
+    margin: 0;
+    padding: 0;
+    border-style: none;
+    background: none;
+    color: var(--color-text);
+}
+
+textarea:focus {
+    outline: none;
+}
+
+button {
+    width: fit-content;
+    cursor: pointer;
+
+    padding: 5px;
+    --padding-button: 5px;
+    margin: 0;
+
+    border-style: none;
+    border-radius: 5px;
+
+    white-space: nowrap;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font: inherit;
+    color: inherit;
+    background: none;
+
+    -webkit-tap-highlight-color: transparent;
+
+    position: relative;
+    /* --padding-button: 5px; */
+    margin: var(--padding-button);
+}
+
+button::before {
+    position: absolute;
+    top: calc(var(--padding-button) * -1);
+    left: calc(var(--padding-button) * -1);
+    padding: var(--padding-button);
+    height: 100%;
+    width: 100%;
+    content: '';
+}
+
+button:hover {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+}
+
+.button {
+    cursor: pointer;
+}
+
+.button:hover {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+}
+
+/* 
+button:hover {
+    filter: brightness(1.3)
+} */
+
+.popup {
+    background: var(--color-background-popup);
+    backdrop-filter: 'blur(2px)'
+}
+
+/* animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*******************/
+/* Popup container */
+/*******************/
+
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+
+@keyframes opacityIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes opacityOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes popup_button_background {
+    from {
+        text-shadow: hsl(200, 100%, 0%) 1px 0 10px;
+        color: rgb(100, 100, 100);
+    }
+
+    to {
+        text-shadow: hsl(200, 100%, 100%) 1px 0 5px;
+        color: rgb(0, 0, 0);
+    }
+}
+
+/**/
+input[type="color"] {
+    -webkit-appearance: none;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 10px;
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    border: none;
+    border-radius: 10px;
+    padding: 0;
+}

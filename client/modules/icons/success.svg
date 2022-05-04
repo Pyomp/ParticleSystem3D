@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   host="65bd71144e"
+   version="1.1"
+   width="12px"
+   height="15px"
+   viewBox="0 0 15 12"
+   content="&lt;mxfile host=&quot;96c1943c-2320-4652-baa1-89f9dc185398&quot; modified=&quot;2021-01-14T08:37:25.749Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36&quot; etag=&quot;khaxcDyTgYQDnQkL4NAG&quot; version=&quot;13.10.0&quot; type=&quot;embed&quot;&gt;&lt;diagram id=&quot;pa60D8HN0T1RZVsAex9N&quot; name=&quot;Page-1&quot;&gt;jVTBjqMwDP0arhWQmao9btl29rAjrdTDnFNiIGqIUTAt3a8fpwQKW1XaHFDy3rNjOzaRyOr+w8mm+kQFJkpj1UfiZ5SmInnjrwduA7CJA1A6rQYoeQBH/RcCGAe00wrahZAQDelmCeZoLeS0wKRzeF3KCjTLWxtZwhNwzKV5Rr+0oiqg6/e3B/ELdFmNVyfr7cDUclSHVNpKKrzOILGPROYQadjVfQbGF28szGB3eMFOkTmw9D8G6WBwkaYLyYW46DZm26C2BG5/YZe+cEkkdlPYMR+UbCtQ4VBRbYKo0MZkaNDd/QgQ+Sb2EiNPYP5gq0mjZS4H75+JCzjSXObf/whOSIT1TPDD6NIThA2j2JHRFrLptf0lMkgm5xxy4zOq+9I35QqLQuewaiHvnKbbivAM1uvOQHk1pqZbeTLw2XFzHcmx5CVx4GwDWaClWeLFfXnXd+HIWLTsbcfRKA0LgwOv7Za58DicNfQvHziZ2obnDbAGcjeWjAbxOjxpGLZ0I1bvA3KdNe9mgKpZ204jE8alnJw/Goo3oafG46N379zsDyD23w==&lt;/diagram&gt;&lt;/mxfile&gt;"
+   id="svg15"
+   sodipodi:docname="success.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata19">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2063"
+     inkscape:window-height="1364"
+     id="namedview17"
+     showgrid="false"
+     inkscape:zoom="45.818182"
+     inkscape:cx="9.5"
+     inkscape:cy="11"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg15" />
+  <defs
+     id="defs7">
+    <linearGradient
+       x1="0"
+       y1="0.46291005"
+       x2="0"
+       y2="19.905132"
+       id="mx-gradient-e3c800-1-ffff99-1-s-0"
+       gradientTransform="scale(0.9258201,1.0801234)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0%"
+         style="stop-color:#e3c800"
+         id="stop2" />
+      <stop
+         offset="100%"
+         style="stop-color:#FFFF99"
+         id="stop4" />
+    </linearGradient>
+  </defs>
+  <g
+     id="g13"
+     transform="matrix(0.82958006,0,0,0.89474592,0.03273809,-3.7979501)">
+    <rect
+       x="0"
+       y="0.5"
+       width="18"
+       height="21"
+       fill="none"
+       stroke="none"
+       pointer-events="all"
+       id="rect9" />
+    <path
+       d="m 8.5,12.28 c 2.62,0 5.62,-1.98 5.62,-5.32 0,-2.82 -2.67,-5.19 -5.62,-5.19 -3.78,0 -5.85,2.79 -5.85,5.19 0,3 2.59,5.32 5.85,5.32 z M 8.5,11 C 6.05,11 4.04,9.26 4.04,6.96 4.04,4.91 5.92,3.01 8.5,3.01 c 2.26,0 4.29,1.79 4.29,3.95 0,2.37 -2.17,4.04 -4.29,4.04 z m 0,-0.85 c 1.72,0 3.36,-1.31 3.36,-3.19 0,-1.54 -1.44,-3.1 -3.36,-3.1 -2.22,0 -3.53,1.64 -3.53,3.1 0,1.7 1.38,3.19 3.53,3.19 z m 4.23,2.03 5.27,7.05 -4.18,-0.87 -2.29,2.9 L 8.49,13.67 6.1,21.5 3.71,19.2 0,19.78 4.34,12.3 C 2.86,11.37 1.29,9.6 1.29,6.96 1.29,3.7 4.19,0.5 8.5,0.5 c 3.51,0 7.05,2.68 7.05,6.46 0,2.33 -1.2,4.04 -2.82,5.22 z"
+       fill="url(#mx-gradient-e3c800-1-ffff99-1-s-0)"
+       stroke="none"
+       pointer-events="all"
+       id="path11"
+       style="fill:url(#mx-gradient-e3c800-1-ffff99-1-s-0)" />
+  </g>
+</svg>

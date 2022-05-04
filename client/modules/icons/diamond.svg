@@ -1,0 +1,72 @@
+<svg   xmlns="http://www.w3.org/2000/svg" height="40px" width="40px">
+  <defs
+     id="defs18">
+    <linearGradient
+       id="lorc-emerald-gradient-1"
+       x1="65.506386"
+       x2="443.1954"
+       y1="48.388123"
+       y2="447.52194"
+       gradientTransform="matrix(0.09144739,0,0,0.08404344,10.02907,9.4795474)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0%"
+         stop-color="#ff0000"
+         stop-opacity="1"
+         id="stop13" />
+      <stop
+         offset="100%"
+         stop-color="#fb6c6c"
+         stop-opacity="1"
+         id="stop15" />
+    </linearGradient>
+    <linearGradient
+       id="lorc-emerald-gradient-1-6"
+       x1="65.506386"
+       x2="443.1954"
+       y1="48.388123"
+       y2="447.52194"
+       gradientTransform="matrix(0.15541266,0,0,0.1428298,-5.9884089,-4.1005881)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0%"
+         stop-color="#ff0000"
+         stop-opacity="1"
+         id="stop13-3" />
+      <stop
+         offset="100%"
+         stop-color="#fb6c6c"
+         stop-opacity="1"
+         id="stop15-4" />
+    </linearGradient>
+  </defs>
+  <g
+     class=""
+     transform="matrix(0.94066124,0,0,1.0219474,-10.379429,-11.17085)"
+     id="g22">
+    <path
+       style="fill:#a1ffff;stroke:#000000;stroke-width:1.10473px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="M 11.896993,22.801948 32.076684,49.071997 52.693478,23.409737 44.024226,11.659123 H 19.473484 Z"
+       id="path844" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.10473px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 19.560297,23.139608 31.977065,11.794188 44.898434,23.20714"
+       id="path846" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.10473px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 44.024228,11.659123 32.076684,23.20714 19.473485,11.659123"
+       id="path848" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.10473px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 32.076685,23.207139 V 49.071997 L 44.898434,23.20714"
+       id="path850" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.10473px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 32.076686,49.071997 19.560297,23.139608"
+       id="path852"/>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.10473px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 11.896993,22.801948 40.796486,0.607789"
+       id="path854" />
+  </g>
+</svg>

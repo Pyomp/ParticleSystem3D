@@ -1,0 +1,7 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#ff3131" stroke-linecap="round" stroke-linejoin="bevel"
+        stroke-width="20">
+        <path d="m90 90-80-80" />
+        <path d="m90 10-80 80" />
+    </g>
+</svg>
