@@ -2,6 +2,7 @@
 import { Array_Tween } from '../utils/math/Tween.js'
 import { Worker_Manager } from './modules/Worker_Manager.js'
 import {
+    AdditiveBlending,
     BufferAttribute,
     BufferGeometry,
     Points,
@@ -45,13 +46,13 @@ export class Particle_System_Main {
         const data_sab = new SharedArrayBuffer(4 * 2)
         const position_sab = new SharedArrayBuffer(this.count * 3 * 4)
         const velocity_sab = new SharedArrayBuffer(this.count * 3 * 4)
-        const acceleration_sab = new SharedArrayBuffer(this.count * 3 * 4)
+
         const time_sab = new SharedArrayBuffer(this.count * 4)
 
         const data_ui32a = new Uint32Array(data_sab)
         const position_f32a = new Float32Array(position_sab)
         const velocity_f32a = new Float32Array(velocity_sab)
-        const acceleration_f32a = new Float32Array(acceleration_sab)
+
         const time_f32a = new Float32Array(time_sab)
 
         let worker_id
@@ -62,7 +63,7 @@ export class Particle_System_Main {
                 data_sab: data_sab,
                 position_sab: position_sab,
                 velocity_sab: velocity_sab,
-                acceleration_sab: acceleration_sab,
+
                 time_sab: time_sab,
             })
         }
@@ -93,11 +94,11 @@ export class Particle_System_Main {
         const particleGeometry = new BufferGeometry()
         particleGeometry.setAttribute('position', new BufferAttribute(position_f32a, 3))
         particleGeometry.setAttribute('velocity', new BufferAttribute(velocity_f32a, 3))
-        particleGeometry.setAttribute('acceleration', new BufferAttribute(acceleration_f32a, 3))
+
         particleGeometry.setAttribute('time', new BufferAttribute(time_f32a, 1))
 
         const img = new Image(64, 64)
-        img.src = new URL('./texture.svg', import.meta.url).href
+        img.src = new URL('./fire.svg', import.meta.url).href
         const tex = new Texture(img)
         tex.flipY = false
         img.onload = () => { tex.needsUpdate = true }
@@ -106,19 +107,20 @@ export class Particle_System_Main {
             sync: { value: 0 },
             color: {
                 value: [
-                    0, 1, 0, 0, 1,
-                    0.33, 0, 1, 0, 1,
-                    0.66, 0, 0, 1, 1,
-                    1, 1, 0, 0, 1,
+                    0, .2, 1, 1, 1,
+                    0.7, 0, 0, 1, 1,
+                    1, 0, 0, 0, 1,
+                ]
+            },
+            size: {
+                value: [
+                    0, 0,
+                    0.5, 2,
+                    1, 0,
                 ]
             },
             acceleration: {
-                value: [
-                    0, 1, 0, 0,
-                    0.33, 0, 1, 0,
-                    0.66, 0, 0, 1,
-                    1, 1, 0, 0,
-                ]
+                value: p.acceleration_tween.flat()
             },
             pointTexture: {
                 value: tex
@@ -132,6 +134,7 @@ export class Particle_System_Main {
                    /* glsl */ `
             attribute vec3 velocity;
             uniform float acceleration[${uniforms.acceleration.value.length}];
+            uniform float size[${uniforms.size.value.length}];
 
             attribute float time;
             varying float vTime;
@@ -153,11 +156,68 @@ export class Particle_System_Main {
                     vuv_offset.y = 0.5;
                 }
 
-                vTime = time;
-                vSync = sync;
-                vec3 velocity_accelerated = velocity + acceleration * sync;
+                vTime = time + sync;
+
+                // size
+                int index = 0;
+                while( vTime > size[index * 2] ) {
+                    index++;
+                    if((index * 2) >= ${uniforms.size.value.length}) break;
+                }
+               
+                if(index == 0){ 
+                    gl_PointSize = size[1];
+                } else if (index >= ${uniforms.size.value.length} / 2 ) {
+                    int i = ${uniforms.size.value.length} - 2;
+                    gl_PointSize = size[i+1];
+                } else {
+                    float before_size = size[(index - 1) * 2 + 1];
+                    float after_size = size[index * 2 + 1];
+                    float x = ( vTime - size[ (index - 1) * 2 ] ) / ( size[ index  * 2 ] - size[ (index - 1) * 2 ] );
+                    gl_PointSize = mix(before_size, after_size, x);
+                }    
+                //
+
+                // acceleration tween
+                index = 0;
+                vec3 final_acceleration;
+
+                while( vTime > acceleration[index * 4] ) {
+                    index++;
+                    if((index * 4) >= ${uniforms.acceleration.value.length}) break;
+                }
+
+                if(index == 0){ 
+
+                    final_acceleration = vec3(acceleration[1], acceleration[2], acceleration[3]);
+
+                } else if (index >= ${uniforms.acceleration.value.length} / 4 ) {
+
+                    int i = ${uniforms.acceleration.value.length} - 4;
+                    final_acceleration = vec3(acceleration[i+1], acceleration[i+2], acceleration[i+3]);
+
+                } else {
+
+                    vec3 before_acc = vec3(
+                        acceleration[(index - 1) * 4 + 1],
+                        acceleration[(index - 1) * 4 + 2],
+                        acceleration[(index - 1) * 4 + 3]);
+
+                    vec3 after_acc = vec3(
+                        acceleration[index * 4 + 1],
+                        acceleration[index * 4 + 2],
+                        acceleration[index * 4 + 3]);
+
+                    float x = ( vTime - acceleration[ (index - 1) * 4 ] ) / ( acceleration[ index  * 4 ] - acceleration[ (index - 1) * 4 ] );
+                   
+                    final_acceleration = mix(before_acc, after_acc, x);
+                }                
+                // 
+
+                vec3 velocity_accelerated = velocity + final_acceleration * sync;
                 vec4 mvPosition = modelViewMatrix * vec4( position + velocity_accelerated * sync, 1.0 );
-                gl_PointSize =  300.0 / length( mvPosition.xyz );
+
+                gl_PointSize *=  300.0 / length( mvPosition.xyz );
                 gl_Position = projectionMatrix * mvPosition;
             }`,
                 fragmentShader: /* glsl */`
@@ -165,16 +225,13 @@ export class Particle_System_Main {
             uniform sampler2D pointTexture;
 
             varying float vTime;
-            varying float vSync;
             varying vec2 vuv_offset;
 
             void main()
             {
-                float t = vTime + vSync;
-
                 int index = 0;
                 
-                while( t > color[index * 5] ) {
+                while( vTime > color[index * 5] ) {
                     index++;
                     if((index * 5) >= ${uniforms.color.value.length}) break;
                 }
@@ -205,13 +262,13 @@ export class Particle_System_Main {
                         color[index * 5 + 3],
                         color[index * 5 + 4]);
 
-                    float x = ( t - color[ (index - 1) * 5 ] ) / ( color[ index  * 5 ] - color[ (index - 1) * 5 ] );
+                    float x = ( vTime - color[ (index - 1) * 5 ] ) / ( color[ index  * 5 ] - color[ (index - 1) * 5 ] );
                    
                     gl_FragColor *= mix(before_color, after_color, x);
                 }                
             }`,
                 transparent: true,
-                // blending: AdditiveBlending,
+                blending: AdditiveBlending,
                 depthWrite: false,
                 // vertexColors: true,
             })
@@ -230,7 +287,6 @@ export class Particle_System_Main {
                 last_update = data_ui32a[0]
                 particleGeometry.attributes.position.needsUpdate = true
                 particleGeometry.attributes.velocity.needsUpdate = true
-                particleGeometry.attributes.acceleration.needsUpdate = true
                 particleGeometry.attributes.time.needsUpdate = true
             }
         }

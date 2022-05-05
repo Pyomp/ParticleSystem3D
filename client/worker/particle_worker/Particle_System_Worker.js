@@ -34,7 +34,7 @@ export class Particle_System_Worker extends Event_Dispatcher {
         data_sab,
         position_sab,
         velocity_sab,
-        acceleration_sab,
+        
         time_sab,
 
         p = p_default,
@@ -54,7 +54,7 @@ export class Particle_System_Worker extends Event_Dispatcher {
         const data_ui32a = new Uint32Array(data_sab)
         const position_f32a = new Float32Array(position_sab)
         const velocity_f32a = new Float32Array(velocity_sab)
-        const acceleration_f32a = new Float32Array(acceleration_sab)
+
         const time_f32a = new Float32Array(time_sab)
 
         for (let i = 0; i < this.count; i++) {
@@ -62,7 +62,6 @@ export class Particle_System_Worker extends Event_Dispatcher {
                 new Particle_Worker(
                     position_f32a.subarray(i * 3, i * 3 + 3),
                     velocity_f32a.subarray(i * 3, i * 3 + 3),
-                    acceleration_f32a.subarray(i * 3, i * 3 + 3),
                     time_f32a.subarray(i, i + 1),
                     i / (this.count - 1),
                     this,

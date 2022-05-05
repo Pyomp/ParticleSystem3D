@@ -20,7 +20,6 @@ export class Particle_Worker {
     constructor(
         position,
         velocity,
-        acceleration,
         time,
         delta_t,
         system_data,
@@ -32,8 +31,12 @@ export class Particle_Worker {
             velocity[0] = velocity[1] = velocity[2] = 0
         }
 
+        const acceleration = [0, 0, 0]
+
         const reset = () => {
+
             const acc_base = system_data.acceleration_tween.get_value(0)
+
             acceleration[0] = acc_base[0]
             acceleration[1] = acc_base[1]
             acceleration[2] = acc_base[2]

@@ -13,7 +13,7 @@ const dispatcher = {
             data.data_sab,
             data.position_sab,
             data.velocity_sab,
-            data.acceleration_sab,
+            
             data.time_sab,
             
 
@@ -39,8 +39,8 @@ onmessage = (e) => {
 }
 
 setInterval(() => {
-    for (const f of updates) f(.2)
-}, 200)
+    for (const f of updates) f(.1)
+}, 100)
 
 
 
