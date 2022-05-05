@@ -112,6 +112,14 @@ export class Particle_System_Main {
                     1, 1, 0, 0, 1,
                 ]
             },
+            acceleration: {
+                value: [
+                    0, 1, 0, 0,
+                    0.33, 0, 1, 0,
+                    0.66, 0, 0, 1,
+                    1, 1, 0, 0,
+                ]
+            },
             pointTexture: {
                 value: tex
             }
@@ -123,7 +131,7 @@ export class Particle_System_Main {
                 vertexShader:
                    /* glsl */ `
             attribute vec3 velocity;
-            attribute vec3 acceleration;
+            uniform float acceleration[${uniforms.acceleration.value.length}];
 
             attribute float time;
             varying float vTime;
