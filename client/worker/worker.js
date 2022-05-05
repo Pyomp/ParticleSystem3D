@@ -9,11 +9,15 @@ const dispatcher = {
     [WORKER_CMD_PARTICLE]: (data) => {
         const system = new Particle_System_Worker(
             updates,
-            data.count,
+
             data.data_sab,
             data.position_sab,
             data.velocity_sab,
+            data.acceleration_sab,
             data.time_sab,
+            
+
+            data.p,
         )
         instances[id++] = system
         return id - 1

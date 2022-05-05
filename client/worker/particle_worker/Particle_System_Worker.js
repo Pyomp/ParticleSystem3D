@@ -1,6 +1,8 @@
 
 
 import { Event_Dispatcher } from '../../../utils/Event_Dispatcher.js'
+import { Array_Tween } from '../../../utils/math/Tween.js'
+import { p_default } from '../../param_default.js'
 import { Particle_Worker } from './Particle_Worker.js'
 
 export class Particle_System_Worker extends Event_Dispatcher {
@@ -28,25 +30,41 @@ export class Particle_System_Worker extends Event_Dispatcher {
      */
     constructor(
         updates,
-        count,
+
         data_sab,
         position_sab,
         velocity_sab,
+        acceleration_sab,
         time_sab,
+
+        p = p_default,
+
     ) {
         super()
+
+        this.count = p.count || p_default.count
+        this.position_base = p.position_base || p_default.position_base
+        this.position_spread = p.position_spread || p_default.position_spread
+
+        this.velocity_base = p.velocity_base || p_default.velocity_base
+        this.velocity_spread = p.velocity_spread || p_default.velocity_spread
+
+        this.acceleration_tween = new Array_Tween(p.acceleration_tween || p_default.acceleration_tween)
+
         const data_ui32a = new Uint32Array(data_sab)
         const position_f32a = new Float32Array(position_sab)
         const velocity_f32a = new Float32Array(velocity_sab)
+        const acceleration_f32a = new Float32Array(acceleration_sab)
         const time_f32a = new Float32Array(time_sab)
 
-        for (let i = 0; i < count; i++) {
+        for (let i = 0; i < this.count; i++) {
             this.#particles.push(
                 new Particle_Worker(
                     position_f32a.subarray(i * 3, i * 3 + 3),
                     velocity_f32a.subarray(i * 3, i * 3 + 3),
+                    acceleration_f32a.subarray(i * 3, i * 3 + 3),
                     time_f32a.subarray(i, i + 1),
-                    i / (count - 1),
+                    i / (this.count - 1),
                     this,
                 )
             )
@@ -78,7 +96,7 @@ export class Particle_System_Worker extends Event_Dispatcher {
                     particles_stopped++
             }
 
-            if (particles_stopped === count) {
+            if (particles_stopped === this.count) {
                 updates.delete(update_stop)
                 if (dispose_resolve) dispose_resolve()
             }

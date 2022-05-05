@@ -7,6 +7,7 @@ import { createHTMLElement } from './modules/htmlElement.js'
 import './modules/style/STYLE.js'
 import { Debug_View } from './Debug_View.js'
 import { Worker_Manager } from './modules/Worker_Manager.js'
+import { Array_Tween } from '../utils/math/Tween.js'
 
 
 
@@ -30,9 +31,6 @@ const particle_system = new Particle_System_Main(
     worker_manager,
     loop_manager,
     three_context.scene,
-    10,
-    { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 0 },
-    { x: 0, y: 1, z: 0 }, { x: 2, y: 0, z: 2 },
 )
 await particle_system.init()
 
