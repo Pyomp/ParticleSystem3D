@@ -9,6 +9,7 @@ import { Worker_Manager } from './modules/Worker_Manager.js'
 
 if (!window.isSecureContext) throw new Error('needs secure context')
 navigator.serviceWorker.register(new URL("../sw.js", import.meta.url))
+if (!window.SharedArrayBuffer) location.reload()
 
 const loop_manager = new Loop_Manager()
 const three_context = new Three_Context(document.body)
