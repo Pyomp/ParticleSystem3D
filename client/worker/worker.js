@@ -1,21 +1,25 @@
-import { WORKER_CMD_PARTICLE, WORKER_INSTANCE_CONTROL } from './constants.js'
+import { WORKER_CMD_NEW_PARTICLE_SYSTEM, WORKER_INSTANCE_CONTROL } from './constants.js'
 import { Particle_System_Worker } from './particle_worker/Particle_System_Worker.js'
+
+const FREQUENCY = 10
+const DT_S = 1 / FREQUENCY
+const DT_MS = DT_S * 1000
 
 const instances = {}
 let id = 0
 
 const updates = new Set()
 const dispatcher = {
-    [WORKER_CMD_PARTICLE]: (data) => {
+    [WORKER_CMD_NEW_PARTICLE_SYSTEM]: (data) => {
         const system = new Particle_System_Worker(
             updates,
 
             data.data_sab,
             data.position_sab,
             data.velocity_sab,
-            
+
             data.time_sab,
-            
+
 
             data.p,
         )
@@ -38,10 +42,14 @@ onmessage = (e) => {
     }
 }
 
+// loop
+let last = performance.now()
+
 setInterval(() => {
-    for (const f of updates) f(.1)
-}, 100)
+    const now = performance.now()
+    const dt = Math.min(now - last, .1)
+    last = now
 
+    for (const f of updates) f(dt)
 
-
-
+}, DT_MS)

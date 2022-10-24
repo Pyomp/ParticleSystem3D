@@ -1,11 +1,5 @@
 import { createHTMLElement } from './modules/htmlElement.js'
 
-
-
-
-
-
-
 export class Debug_View {
     constructor(
         parent,
@@ -13,6 +7,7 @@ export class Debug_View {
         on_stop,
     ) {
         this.container = createHTMLElement('div', {}, parent)
+
         const start_button = createHTMLElement('button', {
             background: 'hsl(240, 100%, 70%)',
         }, this.container, 'Start')
@@ -29,11 +24,5 @@ export class Debug_View {
             start_button.removeEventListener('click', on_start)
             stop_button.removeEventListener('click', on_stop)
         }
-
-
     }
 }
-
-
-
-

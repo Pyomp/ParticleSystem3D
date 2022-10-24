@@ -1,5 +1,3 @@
-
-
 import { Event_Dispatcher } from '../../../utils/Event_Dispatcher.js'
 import { Array_Tween } from '../../../utils/math/Tween.js'
 import { p_default } from '../../param_default.js'
@@ -23,7 +21,6 @@ export class Particle_System_Worker extends Event_Dispatcher {
     #particles = []
 
     /**
-     * 
      * @param {Set} updates 
      * @param {number} count 
      * @param {SharedArrayBuffer} sab 
@@ -126,12 +123,3 @@ export class Particle_System_Worker extends Event_Dispatcher {
         }
     }
 }
-
-
-
-
-
-
-
-
-

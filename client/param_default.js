@@ -1,5 +1,3 @@
-
-
 export const p_default = {
     count: 100,
 
@@ -14,13 +12,3 @@ export const p_default = {
         [1, 0, 0, 0],
     ],
 }
-
-
-
-
-
-
-
-
-
-

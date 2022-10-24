@@ -1,5 +1,3 @@
-
-import { Array_Tween } from '../utils/math/Tween.js'
 import { Worker_Manager } from './modules/Worker_Manager.js'
 import {
     AdditiveBlending,
@@ -8,11 +6,10 @@ import {
     Points,
     Scene,
     ShaderMaterial,
-    Texture,
-    Vector3
+    Texture
 } from './modules_3D/three.module.js'
 import { p_default } from './param_default.js'
-import { WORKER_CMD_PARTICLE, WORKER_INSTANCE_CONTROL } from './worker/constants.js'
+import { WORKER_CMD_NEW_PARTICLE_SYSTEM, WORKER_INSTANCE_CONTROL } from './worker/constants.js'
 
 export class Particle_System_Main {
 
@@ -57,7 +54,7 @@ export class Particle_System_Main {
 
         let worker_id
         this.init = async () => {
-            worker_id = await worker_manager.request(WORKER_CMD_PARTICLE, {
+            worker_id = await worker_manager.request(WORKER_CMD_NEW_PARTICLE_SYSTEM, {
                 p: p,
 
                 data_sab: data_sab,
@@ -94,7 +91,6 @@ export class Particle_System_Main {
         const particleGeometry = new BufferGeometry()
         particleGeometry.setAttribute('position', new BufferAttribute(position_f32a, 3))
         particleGeometry.setAttribute('velocity', new BufferAttribute(velocity_f32a, 3))
-
         particleGeometry.setAttribute('time', new BufferAttribute(time_f32a, 1))
 
         const img = new Image(64, 64)
@@ -107,16 +103,16 @@ export class Particle_System_Main {
             sync: { value: 0 },
             color: {
                 value: [
-                    0, .2, 1, 1, 1,
-                    0.7, 0, 0, 1, 1,
-                    1, 0, 0, 0, 1,
+                    0, .1, .1, 1, 1,
+                    .5, 1, .1, .1, 1,
+                    1, .1, 1, .1, 0,
                 ]
             },
             size: {
                 value: [
-                    0, 0,
+                    0, .1,
                     0.5, 2,
-                    1, 0,
+                    1, 1,
                 ]
             },
             acceleration: {
@@ -130,8 +126,7 @@ export class Particle_System_Main {
         const mat = new ShaderMaterial(
             {
                 uniforms: uniforms,
-                vertexShader:
-                   /* glsl */ `
+                vertexShader: /* glsl */ `
             attribute vec3 velocity;
             uniform float acceleration[${uniforms.acceleration.value.length}];
             uniform float size[${uniforms.size.value.length}];
@@ -269,8 +264,7 @@ export class Particle_System_Main {
             }`,
                 transparent: true,
                 blending: AdditiveBlending,
-                depthWrite: false,
-                // vertexColors: true,
+                depthWrite: false
             })
 
         const points = new Points(particleGeometry, mat)
